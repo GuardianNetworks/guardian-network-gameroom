@@ -1,0 +1,309 @@
+<!--
+═══════════════════════════════════════════════════════════════
+  GUARDIAN NETWORK — GAME ROOM HERO BUTTON
+  Drop this into your guardiannetwork.io homepage
+  Place between hero section and features section
+═══════════════════════════════════════════════════════════════
+-->
+
+<style>
+/* GAME ROOM HERO BUTTON STYLES */
+.gn-gameroom-hero {
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 0 20px;
+  font-family: 'Rajdhani', 'Inter', sans-serif;
+}
+
+.gn-gh-card {
+  position: relative;
+  background: linear-gradient(135deg, #1a0028 0%, #10001f 50%, #000814 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 20px 60px rgba(255, 45, 146, 0.3), 0 0 80px rgba(160, 32, 240, 0.2);
+}
+
+.gn-gh-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff2d92, #a020f0, #00f0ff);
+  z-index: -1;
+  animation: gnGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes gnGlow {
+  0% { opacity: 0.6; filter: blur(0); }
+  100% { opacity: 1; filter: blur(2px); }
+}
+
+.gn-gh-card:hover { transform: translateY(-4px) scale(1.01); }
+.gn-gh-card:active { transform: translateY(-2px) scale(0.99); }
+
+.gn-gh-content {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  align-items: center;
+  padding: 32px 28px;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  .gn-gh-content {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+}
+
+.gn-gh-text {}
+
+.gn-gh-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  border-radius: 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #00ff88;
+  margin-bottom: 14px;
+}
+
+.gn-gh-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 6px #00ff88;
+  animation: gnDot 1s ease-in-out infinite;
+}
+
+@keyframes gnDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.gn-gh-title {
+  font-family: 'Audiowide', 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
+}
+
+.gn-gh-title .l1 {
+  display: block;
+  color: #ffffff;
+}
+
+.gn-gh-title .l2 {
+  display: block;
+  background: linear-gradient(90deg, #ff2d92, #fff100, #00f0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(255, 241, 0, 0.4));
+}
+
+.gn-gh-desc {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  margin: 0 0 16px;
+  max-width: 480px;
+}
+
+.gn-gh-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.gn-gh-feat {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.gn-gh-feat.pink { color: #ff2d92; border-color: rgba(255, 45, 146, 0.3); background: rgba(255, 45, 146, 0.06); }
+.gn-gh-feat.cyan { color: #00f0ff; border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.06); }
+.gn-gh-feat.purple { color: #a020f0; border-color: rgba(160, 32, 240, 0.3); background: rgba(160, 32, 240, 0.06); }
+
+.gn-gh-stats {
+  display: flex;
+  gap: 18px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.gn-gh-stat .v {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1;
+}
+
+.gn-gh-stat .v.pink { color: #ff2d92; }
+.gn-gh-stat .v.cyan { color: #00f0ff; }
+
+.gn-gh-stat .l {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 3px;
+}
+
+/* CTA BUTTON */
+.gn-gh-cta-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gn-gh-cta {
+  display: inline-block;
+  text-decoration: none;
+  padding: 18px 28px;
+  background: linear-gradient(135deg, #ff2d92, #a020f0);
+  color: #fff;
+  font-family: 'Russo One', 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(255, 45, 146, 0.5);
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border: none;
+  text-align: center;
+}
+
+.gn-gh-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.gn-gh-cta:hover::before, .gn-gh-cta:active::before { left: 100%; }
+.gn-gh-cta:active { transform: scale(0.96); box-shadow: 0 4px 30px rgba(255, 45, 146, 0.8); }
+
+.gn-gh-cta-sub {
+  display: block;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Combat visualization */
+.gn-gh-visual {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  opacity: 0.15;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(255, 45, 146, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 30% 70%, rgba(0, 240, 255, 0.4) 0%, transparent 40%);
+}
+
+.gn-gh-visual::after {
+  content: '🎯';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  filter: drop-shadow(0 0 20px rgba(255, 45, 146, 0.8));
+  opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+  .gn-gh-visual { display: none; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     THE ACTUAL HTML — PASTE THIS WHERE YOU WANT IT
+═══════════════════════════════════════════════════════════════ -->
+
+<section class="gn-gameroom-hero">
+  <a href="/gameroom.html" class="gn-gh-card" style="text-decoration:none;display:block;">
+    <div class="gn-gh-visual"></div>
+    <div class="gn-gh-content">
+      <div class="gn-gh-text">
+        <div class="gn-gh-badge">LIVE NOW · 247 PLAYERS ONLINE</div>
+        <h2 class="gn-gh-title">
+          <span class="l1">ENTER THE</span>
+          <span class="l2">GAME ROOM</span>
+        </h2>
+        <p class="gn-gh-desc">
+          Real-time AR combat powered by Guardian Network. Point your phone. Lock on. Fire. Up to 16 players battle in actual physical space using our patent-pending tech.
+        </p>
+        <div class="gn-gh-features">
+          <span class="gn-gh-feat pink">⚔️ AR COMBAT</span>
+          <span class="gn-gh-feat cyan">📸 CAMERA TARGETING</span>
+          <span class="gn-gh-feat purple">🎙️ VOICE ANNOUNCER</span>
+        </div>
+        <div class="gn-gh-stats">
+          <div class="gn-gh-stat"><div class="v">247</div><div class="l">ONLINE</div></div>
+          <div class="gn-gh-stat"><div class="v pink">38</div><div class="l">ROOMS</div></div>
+          <div class="gn-gh-stat"><div class="v cyan">2</div><div class="l">GAMES</div></div>
+        </div>
+      </div>
+      <div class="gn-gh-cta-wrap">
+        <div>
+          <button class="gn-gh-cta">▶ PLAY NOW</button>
+          <span class="gn-gh-cta-sub">FREE · NO DOWNLOAD</span>
+        </div>
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     INTEGRATION NOTES:
+     
+     1. Copy the entire <style> block above into your <head> or 
+        existing CSS file
+     2. Paste the <section class="gn-gameroom-hero">...</section>
+        block where you want it on your homepage
+     3. Make sure gameroom.html is uploaded to the same directory
+     4. The button links to /gameroom.html — adjust if your path
+        is different (e.g. /games/gameroom.html)
+     5. Fonts (Audiowide, Russo One, Share Tech Mono, Rajdhani)
+        should already be loaded — if not, add this to your <head>:
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Russo+One&family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+═══════════════════════════════════════════════════════════════ -->
